@@ -19,7 +19,7 @@ def cdata(x): return '<![CDATA['+str(x).replace(']]>',']]]]><![CDATA[>')+']]>'
 items=[]
 for r in rows:
     filename=Path(r['arquivo_html']).name
-    source=(site/'posts'/filename).read_text(encoding='utf-8')
+  source=Path('posts', filename).read_text(encoding='utf-8')
     soup=BeautifulSoup(source,'html.parser')
     article=soup.find('article')
     figures=soup.find_all('figure')
