@@ -39,7 +39,9 @@ for row in rows:
     article = soup.find('article')
     if article is None:
         raise ValueError(f'Artigo sem corpo: {filename}')
-    content = '\n'.join(str(figure) for figure in soup.find_all('figure')) + '\n' + str(article)
+    figures = soup.find_all('figure')
+capa = str(figures[0]) if figures else ''
+content = capa + '\n' + str(article)
     content = content.replace('../imagens/', base + 'imagens/')
     if '../imagens/' in content:
         raise ValueError(f'Imagem sem URL publica: {filename}')
